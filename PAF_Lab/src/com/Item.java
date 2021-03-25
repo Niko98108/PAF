@@ -14,7 +14,7 @@ public class Item {
 	 try
 	 {
 	 Class.forName("com.mysql.jdbc.Driver");
-	 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/db",
+	 con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/pafDB",
 	 "root", "");
 	 //For testing
 
@@ -75,10 +75,23 @@ public class Item {
 	 return "Error while connecting to the database for reading.";
 	 }
 	 // Prepare the html table to be displayed
-	 output = "<table border='1'><tr><th>Item Code</th>"
-	 +"<th>Item Name</th><th>Item Price</th>"
-	 + "<th>Item Description</th>"
-	 + "<th>Update</th><th>Remove</th></tr>";
+	 
+//	 output = "<table border='1'><tr><th>Item Code</th>"
+//	 +"<th>Item Name</th><th>Item Price</th>"
+//	 + "<th>Item Description</th>"
+//	 + "<th>Update</th><th>Remove</th></tr>";
+	 
+	 output = "<table class=\"table table-bordered\">\r\n"
+	 		+ "  <thead>\r\n"
+	 		+ "    <tr>\r\n"
+	 		+ "      <th scope=\"col\">ID</th>\r\n"
+	 		+ "      <th scope=\"col\">Item Name</th>\r\n"
+	 		+ "      <th scope=\"col\">Item Code</th>\r\n"
+	 		+ "      <th scope=\"col\">Item Description</th>\r\n"
+	 		+ "      <th scope=\"col\" colspan=\"2\">Upadate/Delete</th>\r\n"
+	 		+ "    </tr>\r\n"
+	 		+ "  </thead>\r\n"
+	 		+ "</table";
 	 String query = "select * from items";
 	 Statement stmt = con.createStatement();
 	 ResultSet rs = stmt.executeQuery(query);
@@ -94,6 +107,7 @@ public class Item {
 	 output += "<tr><td>" + itemCode + "</td>";
 	 output += "<td>" + itemName + "</td>";
 	 output += "<td>" + itemPrice + "</td>"; 
+	
 	
 	output += "<td>" + itemDesc + "</td>";
 	 // buttons

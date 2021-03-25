@@ -1,7 +1,7 @@
-<%@page import="com.Item"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
 
+<%@page import="com.Item"%>
 <%
 if (request.getParameter("itemCode") != null)
  {
@@ -33,24 +33,42 @@ if(request.getParameter("btnUpdate") !=null){
 <meta charset="ISO-8859-1">
 <title>Items Management</title>
 </head>
+<link href="css/Bootstrap.css" rel="stylesheet" type="text/css">
 <body>
-<h1>Items Management</h1>
+<h1 >Items Management</h1>
+<div class="container">
 <form method="post" action="items.jsp">
- Item code: <input name="itemCode" type="text"><br>
- Item name: <input name="itemName" type="text"><br>
- Item price: <input name="itemPrice" type="text"><br>
- Item description: <input name="itemDesc" type="text"><br>
- <input name="btnSubmit" type="submit" value="Save">
+	 <div class="mb-1 col-6">
+   		 <label for="itemCode" class="form-label">Item Code</label>
+    	<input type="text"name="itemCode"  class="form-control" id="itemcode">
+    </div>
+    <div class="mb-1 col-6">
+   		 <label for="itemCode" class="form-label">Item Name</label>
+    	<input type="text"name="itemName"  class="form-control" id="itemname">
+    </div>
+    <div class="mb-1 col-6">
+   		 <label for="itemCode" class="form-label">Item Price</label>
+    	<input type="text"name="itemPrice"  class="form-control" id="itemcode" placeholder="ooo.oo/-">
+    </div>
+    <div class="mb-4 col-6">
+   		 <label for="itemCode" class="form-label">Item Description</label>
+    	<input type="text"name="itemDesc"  class="form-control" id="itemdescription">
+    </div>
+
+ <input name="btnSubmit" class="btn btn-primary mb-3" type="submit" value="Save">
  
 </form>
-<%
- out.print(session.getAttribute("statusMsg"));
-%>
 <br>
+<div class="alert alert-primary" role="alert">
+	<%
+ 		out.print(session.getAttribute("statusMsg"));
+	%>
+</div>
 <%
  Item itemObj = new Item();
  out.print(itemObj.readItems());
 %>
+</div>
 </body>
 </html>
 
